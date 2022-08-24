@@ -55,7 +55,7 @@ export async function create(req, res) {
 
 export async function update(req, res) {
   try {
-    const { postId } = req.params;
+    const postId = req.param("id");
     const { success, error } = await postService.update(
       postId,
       req.auth.id,
@@ -89,8 +89,8 @@ export async function getPublishedByUrl(req, res) {
 
 export async function getPublishedById(req, res) {
   try {
-    const id = req.param("id");
-    const data = await postService.getPublisehdById(id);
+    const postId = req.param("id");
+    const data = await postService.getPublisehdById(postId);
     return res.status(200).json({
       data,
     });
@@ -103,8 +103,8 @@ export async function getPublishedById(req, res) {
 
 export async function getById(req, res) {
   try {
-    const id = req.param("id");
-    const data = await postService.getById(id);
+    const { id: postId } = req.params;
+    const data = await postService.getById(postId);
     return res.status(200).json({
       data,
     });
@@ -123,6 +123,21 @@ export async function generateUrl(req, res) {
       data,
     });
   } catch (_err) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error!", error: _err });
+  }
+}
+
+export async function deletePost(req, res) {
+  try {
+    const postId = req.param("id");
+    const data = await postService.deletePost(postId, req.auth.id);
+    return res.status(201).json({
+      data,
+    });
+  } catch (_err) {
+    console.log(_err);
     return res
       .status(500)
       .json({ message: "Internal server error!", error: _err });

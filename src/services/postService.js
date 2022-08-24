@@ -137,3 +137,17 @@ export async function generateURL(title) {
 
   return url;
 }
+
+export async function deletePost(postId, userId) {
+  if (!postId || !userId) throw new Error("Paramters not defined");
+  const post = await Post.findOne({
+    where: {
+      id: postId,
+      userId,
+    },
+  });
+  if (!post) throw new Error("Invalid post by id: " + postId);
+  post.destroy();
+
+  return true;
+}

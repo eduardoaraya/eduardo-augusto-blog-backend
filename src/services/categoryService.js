@@ -57,3 +57,16 @@ export const update = async (categoryId, body) => {
     };
   }
 };
+
+export async function deleteCategory(categoryId) {
+  if (!categoryId) throw new Error("Paramters not defined");
+  const category = await Category.findOne({
+    where: {
+      id: categoryId,
+    },
+  });
+  if (!category) throw new Error("Invalid category by id: " + categoryId);
+  category.destroy();
+
+  return true;
+}

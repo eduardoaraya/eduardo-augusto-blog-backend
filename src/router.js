@@ -27,11 +27,13 @@ adminRouter.post("/post/generate-url", jwt(), postController.generateUrl);
 adminRouter.post("/post", jwt(), postController.create);
 adminRouter.get("/posts", jwt(), postController.listAll);
 adminRouter.get("/post/:id", jwt(), postController.getById);
-adminRouter.put("/post/:postId", jwt(), postController.update);
+adminRouter.put("/post/:id", jwt(), postController.update);
+adminRouter.delete("/post/:id", jwt(), postController.deletePost);
 
 adminRouter.get("/category", jwt(), categoryController.listAll);
 adminRouter.post("/category", jwt(), categoryController.create);
-adminRouter.put("/category/:categoryId", jwt(), categoryController.update);
+adminRouter.put("/category/:id", jwt(), categoryController.update);
+adminRouter.delete("/category/:id", jwt(), categoryController.deleteCategory);
 // adminRouter.get("/config", jwt(), coreConfigDataController.getByPath);
 
 export default {
