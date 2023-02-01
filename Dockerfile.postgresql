@@ -1,0 +1,7 @@
+FROM postgres:14
+COPY ./configs/db/postgresql.conf /var/lib/postgresql/data/postgresql.conf
+EXPOSE 5432
+
+
+
+
