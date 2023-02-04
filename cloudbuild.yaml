@@ -1,5 +1,8 @@
 steps:
   - name: gcr.io/cloud-builders/docker
+    env: 
+      - NODE_ENV=production
+      - PORT=8080
     args:
       - build
       - '-t'
