@@ -3,6 +3,13 @@ steps:
     env: 
       - NODE_ENV=production
       - PORT=8080
+      - JWT_SECRET=$_JWT_SECRET
+      - JWT_EXPIRE=$_JWT_EXPIRE
+      - DB_USER=$_DB_USER
+      - DB_PASSWORD=$_DB_PASSWORD
+      - DB_HOST=$_DB_HOST
+      - DB_NAME=$_DB_NAME
+      - DB_PORT=$_DB_PORT
     args:
       - build
       - '-t'

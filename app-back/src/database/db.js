@@ -24,9 +24,9 @@ sequelize.sync({});
 async function connect() {
   try {
     await sequelize.authenticate();
-    console.info("Connection has been established successfully.");
+    process.stdout.write("Connection has been established successfully.");
   } catch (error) {
-    console.error("Unable to connect to the database");
+    process.stdout.write("Unable to connect to the database");
   }
 }
 
